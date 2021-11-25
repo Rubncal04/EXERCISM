@@ -1,4 +1,12 @@
-def add(moment):
-    second = 10 ** 9
+""" Determine the moment that would be after a gigasecond has passed. """
 
-    return moment + second
+from datetime import timedelta
+
+GIGASECONDS = 10**9
+
+def add(moment):
+    """
+    This Function determinate the time has passed after a gigasecond
+    """
+    delta = timedelta(seconds=GIGASECONDS)
+    return moment + delta
