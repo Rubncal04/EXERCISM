@@ -7,11 +7,11 @@ class LogLineParser
   end
 
   def message
-    @line.split(' ')[1..].join(' ')
+    @line.slice(@line.index(':')+1, @line.size).strip
   end
 
   def log_level
-    @line.split(' ').first.scan(/[A-Z]+/).first.downcase
+    @line.slice(1, @line.index(']')-1).downcase
   end
 
   def reformat
