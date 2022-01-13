@@ -1,6 +1,6 @@
 import unittest
 import pytest
-import sys
+# import sys
 
 try:
     from lasagna import (
