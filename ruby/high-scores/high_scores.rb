@@ -1,35 +1,26 @@
+# frozen_string_literal: true
+
+# Manage a game player's High Score list.
 class HighScores
-  attr_reader :list_of_scores
+  attr_reader :scores
 
   def initialize(score)
-    @list_of_scores = score
-  end
-
-  def scores
-    list_of_scores
+    @scores = score
   end
 
   def latest
-    list_of_scores.last
+    scores.last
   end
 
   def personal_best
-    list_of_scores.max()
+    scores.max
   end
 
   def personal_top_three
-    list_of_scores.max(3)
+    scores.max(3)
   end
 
   def latest_is_personal_best?
-    value_boolean = true
-    list_of_scores[..-2].map do |score|
-      if latest > score
-        value_boolean
-      else
-        value_boolean = false
-      end
-    end
-    value_boolean
+    latest == personal_best
   end
 end
