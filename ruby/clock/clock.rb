@@ -10,7 +10,7 @@ class Clock
     @hour += minutes
     days = @hour / 24
     hour = days * 24
-    @hour -= hour
+    @hour -= hour 
   end
 
   def +(other)
@@ -26,6 +26,6 @@ class Clock
   end
 
   def to_s
-    "#{'%02d' % hour}:#{'%02d' % minute}"
+    '%02d:%02d' % [hour, minute]
   end
 end
