@@ -4,7 +4,7 @@
 module SavingsAccount
   def self.interest_rate(balance)
     if balance.negative?
-      -3.213
+      3.213
     elsif balance < 1_000
       0.5
     elsif balance < 5_000
