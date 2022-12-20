@@ -13,17 +13,13 @@ class Luhn
   end
 
   def valid?
-    return false unless length_valid?
-    return false if valid_format?
-    luhn_calculation
-  end
+    return false unless valid_format?
 
-  def length_valid?
-    format_string.length > 1
+    (luhn_calculation % 10).zero?
   end
 
   def valid_format?
-    format_string.match?(/[[:alpha:]]/)
+    format_string.length > 1 && !format_string.match?(/[[:alpha:]]/)
   end
 
   def format_string
@@ -38,6 +34,6 @@ class Luhn
       n -= 9 if n > 9
       luhn << n
     end
-    (luhn.sum % 10).zero?
+    luhn.sum
   end
 end
