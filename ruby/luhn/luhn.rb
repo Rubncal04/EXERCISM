@@ -4,26 +4,35 @@
 class Luhn
   attr_reader :number
 
+  def self.valid?(number)
+    number = new(number).valid?
+  end
+
   def initialize(number)
     @number = number
   end
 
-  def self.valid?(number)
-    number = new(number)
-    return false unless number.convert_string_to_array.length > 1
-
-    return false if number.convert_string_to_array.any?(/[[:alpha:]]/)
-
-    number.divisible_by_ten
+  def valid?
+    return false unless length_valid?
+    return false if valid_format?
+    luhn_calculation
   end
 
-  def convert_string_to_array
-    @number.gsub(' ', '').chars.reverse
+  def length_valid?
+    format_string.length > 1
   end
 
-  def divisible_by_ten
+  def valid_format?
+    format_string.match?(/[[:alpha:]]/)
+  end
+
+  def format_string
+    @number.gsub(' ', '').reverse
+  end
+
+  def luhn_calculation
     luhn = []
-    convert_string_to_array.each_with_index do |n, i|
+    format_string.each_char.with_index do |n, i|
       n = n.to_i
       n *= 2 if i.to_i.odd?
       n -= 9 if n > 9
