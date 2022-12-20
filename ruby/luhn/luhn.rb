@@ -5,7 +5,7 @@ class Luhn
   attr_reader :number
 
   def self.valid?(number)
-    number = new(number).valid?
+    new(number).valid?
   end
 
   def initialize(number)
