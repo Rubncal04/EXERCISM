@@ -9,7 +9,7 @@ class Luhn
   end
 
   def initialize(number)
-    @number = number
+    @number = number.gsub(' ', '')
   end
 
   def valid?
@@ -19,16 +19,12 @@ class Luhn
   end
 
   def valid_format?
-    format_string.length > 1 && !format_string.match?(/[[:alpha:]]/)
-  end
-
-  def format_string
-    @number.gsub(' ', '').reverse
+    number.length > 1 && !number.match?(/[[:alpha:]]/)
   end
 
   def luhn_calculation
     luhn = []
-    format_string.each_char.with_index do |n, i|
+    number.reverse.each_char.with_index do |n, i|
       n = n.to_i
       n *= 2 if i.to_i.odd?
       n -= 9 if n > 9
