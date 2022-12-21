@@ -4,37 +4,27 @@
 class Scrabble
   attr_accessor :string
 
-  ONE_POINT = %w[A E I O U L N R S T].freeze
-  TWO_POINTS = %w[D G].freeze
-  THREE_POINTS = %w[B C M P].freeze
-  FOUR_POINTS = %w[F H V W Y].freeze
-  FIVE_POINTS = %w[K].freeze
-  EIGHT_POINTS = %w[J X].freeze
-  TEN_POINTS = %w[Q Z].freeze
+  POINTS = {
+    'A' => 1,  'N' => 1,
+    'B' => 3,  'O' => 1,
+    'C' => 3,  'P' => 3,
+    'D' => 2,  'Q' => 10,
+    'E' => 1,  'R' => 1,
+    'F' => 4,  'S' => 1,
+    'G' => 2,  'T' => 1,
+    'H' => 4,  'U' => 1,
+    'I' => 1,  'V' => 4,
+    'J' => 8,  'W' => 4,
+    'K' => 5,  'X' => 8,
+    'L' => 1,  'Y' => 4,
+    'M' => 3,  'Z' => 10
+  }
 
   def initialize(string)
     @string = string.upcase
   end
 
   def score
-    points = 0
-    @string.chars.each do |letter|
-      if ONE_POINT.include?(letter)
-        points += 1
-      elsif TWO_POINTS.include?(letter)
-        points += 2
-      elsif THREE_POINTS.include?(letter)
-        points += 3
-      elsif FOUR_POINTS.include?(letter)
-        points += 4
-      elsif FIVE_POINTS.include?(letter)
-        points += 5
-      elsif EIGHT_POINTS.include?(letter)
-        points += 8
-      elsif TEN_POINTS.include?(letter)
-        points += 10
-      end
-    end
-    points
+    string.chars.sum(&POINTS)
   end
 end
