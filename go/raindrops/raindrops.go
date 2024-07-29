@@ -3,7 +3,7 @@ package raindrops
 import "strconv"
 
 func Convert(number int) string {
-	var result string
+	result := ""
 
 	if number%3 == 0 {
 		result += "Pling"
@@ -17,7 +17,7 @@ func Convert(number int) string {
 		result += "Plong"
 	}
 
-	if result == "" {
+	if len(result) == 0 {
 		return strconv.Itoa(number)
 	}
 
