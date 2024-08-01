@@ -9,7 +9,7 @@ func Distance(strandOne, strandTwo string) (int, error) {
 		return 0, errors.New("disallow strand")
 	}
 
-	counter := 0
+	var counter int
 	for index := range strandOne {
 		if strandOne[index] != strandTwo[index] {
 			counter++
