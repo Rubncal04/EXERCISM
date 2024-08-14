@@ -5,17 +5,19 @@ import (
 )
 
 func CollatzConjecture(n int) (int, error) {
-	var count int
-	if n <= 0 {
+	if n < 1 {
 		return 0, errors.New("error by zero or negative number")
 	}
+
+	var count int
 	for n != 1 {
+		count++
 		if n%2 == 0 {
 			n /= 2
-		} else {
-			n = 3*n + 1
+			continue
 		}
-		count++
+
+		n = 3*n + 1
 	}
 
 	return count, nil
